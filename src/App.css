@@ -1,3 +1,11 @@
+body{
+    margin: 0;
+    padding:0;
+    background-color: #fdfdfd;
+}
+nav.navbar{
+    padding: 0 20px;
+}
 .products{
     margin-top:80px;
 }
@@ -66,3 +74,25 @@ table tbody tr td:nth-child(6){
 table tbody tr td:nth-child(6) button i{
    margin-right: 5px;
 }
+.nav-item{
+    line-height: 50px;
+    height: 50px;
+    margin: 0 10px;
+    display: block;
+    position: relative;
+}
+.nav-item-active{ 
+  border-bottom: 2px solid #007bff;
+}
+
+.menu-link{
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    transition: color .2s linear;
+}
+.menu-link:hover{
+    color: black;
+    text-decoration: none;
+}
+/* nav-item nav-item-active */
