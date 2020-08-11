@@ -1,0 +1,68 @@
+.products{
+    margin-top:80px;
+}
+.panel{
+    padding:20px;
+    border: 2px solid #007bff;
+    margin-top: 10px;
+    border-radius:2px;
+}
+.panel-heading{
+    font-size:22px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display:block;
+}
+.btn-add{
+    font-size: 17px;
+}
+table thead tr th{
+    text-align:center;
+    padding:10px;
+}
+table tbody tr td:not(:nth-child(3)){
+    text-align: center ;
+}
+/* STT */
+table thead tr th:nth-child(1){
+    width: 5%;
+}
+
+/* Mã */
+table thead tr th:nth-child(2){
+    width: 5%;
+}
+
+/* Tên */
+table thead tr th:nth-child(3){
+    width: 20%;
+}
+table tbody tr td:nth-child(3){
+    padding-left:10px;
+    font-size:17px;
+}
+/* Giá */
+table thead tr th:nth-child(4){
+    width: 10%;
+}
+table tbody tr td:nth-child(4){
+    font-weight: 500;
+}
+
+/* Trạng thái */
+table thead tr th:nth-child(5){
+    width: 5%;
+}
+
+/* Hành động */
+table thead tr th:nth-child(6){
+    width: 10%;
+}
+table tbody tr td:nth-child(6){
+    padding:10px;
+    display:flex;
+    justify-content: space-evenly;
+}
+table tbody tr td:nth-child(6) button i{
+   margin-right: 5px;
+}
