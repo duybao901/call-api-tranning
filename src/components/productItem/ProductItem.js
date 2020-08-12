@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'class-name'
+import { Link } from 'react-router-dom'
 
 class ProductItem extends Component {
 
@@ -23,14 +24,14 @@ class ProductItem extends Component {
         return (
             <tr>
                 <td>{index+1}</td>
-                <td>{product.id}</td>
+                <td>{product.label}</td>
                 <td>{product.name}</td>
                 <td>{product.price.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} Đ</td>
                 <td>
                     <span className={badgeClassName}>{product.status ? 'Còn hàng':'Hết hàng'}</span>
                 </td>
                 <td>
-                    <button className="btn btn-primary"><i className="far fa-edit"></i>Sữa</button>
+                    <Link to={`product/${product.id}/edit`} className="btn btn-primary" ><i className="far fa-edit"></i>Sữa</Link>
                     <button className="btn btn-danger" onClick={()=> this.onDelete(product.id)}><i className="far fa-trash-alt"></i>Xóa</button>
                 </td>
             </tr>

@@ -13,13 +13,26 @@ class PageHomeProductAction extends Component {
             chkbStatus: false
         }
     }
+    
+    componentDidMount() {
+        var { match } = this.props;   
+        if (match) {            
+            callerApi("GET", `products/${match.params.id}`, null).then(res => {                        
+                this.setState({
+                    id: match.params.id,
+                    txtCode: res.data.label,
+                    txtName: res.data.name,
+                    txtPrice: res.data.price,
+                    chkbStatus: res.data.status
+                })
+            })
+        }
+    }
+
     onChange = (event) => {
         var targets = event.target;
         var name = targets.name;
-        var value = targets.type === "checkbox" ? targets.checked : targets.value;
-        if (targets.name === 'txtPrice') {
-            value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
-        }
+        var value = targets.type === "checkbox" ? targets.checked : targets.value;      
         this.setState({
             [name]: value
         })
@@ -27,21 +40,28 @@ class PageHomeProductAction extends Component {
 
     onSave =(e) => {
         e.preventDefault();
-        const { txtCode, txtName, txtPrice, chkbStatus } = this.state;
-        var { history } = this.props
+        const { id,  txtCode, txtName, txtPrice, chkbStatus } = this.state;
+        var { history } = this.props;
         var data = {
-            id: txtCode,
+            label: txtCode,
             name: txtName,
             price:txtPrice,
             status: chkbStatus
         }
-        callerApi("POST", "products", {...data}).then(res => {
-            history.goBack();
-        })        
+        if (id) {
+            callerApi("PUT", `products/${id}`, {
+                ...data
+            }).then(res => {
+                history.goBack();
+            })
+        } else {            
+            callerApi("POST", "products", {...data}).then(res => {
+                history.goBack();
+            })        
+        }
     }
     render() {
         const { txtCode, txtName, txtPrice, chkbStatus } = this.state;
-       
         return (
             <div className="container">
                 <h2>Thêm Sản Phẩm</h2>
@@ -85,8 +105,8 @@ class PageHomeProductAction extends Component {
                             name="chkbStatus"
                             type="checkbox"
                             className="form-check-input"
-                            onChange={this.onChange}
-                            value={chkbStatus}
+                            onChange={this.onChange}     
+                            checked={chkbStatus}
                         />
                         <label className="form-check-label">Còn hàng</label>
                     </div>

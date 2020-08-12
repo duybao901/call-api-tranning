@@ -22,6 +22,11 @@ const routers = [
         main: ({ history }) => <PageProductAction history={history}/>
     },
     {
+        path: '/product/:id/edit',
+        exact: false,
+        main: ({ history, match }) => <PageProductAction history={history} match={match}/>
+    },
+    {
         // Neu khong tim thay 
         path: '',
         exact: false,
