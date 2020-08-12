@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ProductList from '../../components/productList/ProductList'
+import ProductListContainer from '../../containers/ProductListContainer'
 
 class PageProductList extends Component {
     render() {
@@ -8,9 +8,8 @@ class PageProductList extends Component {
             <div className="row">
                 <div className="col-xs-12 col-md-12 col-lg-12">
                     <button className="btn btn-primary btn-add">Thêm sản phẩm</button>
-                    <ProductList>
-                        {this.props.children}
-                    </ProductList>
+                    <ProductListContainer>                       
+                    </ProductListContainer>
                 </div>
             </div>
          

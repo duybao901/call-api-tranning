@@ -96,3 +96,6 @@ table tbody tr td:nth-child(6) button i{
     text-decoration: none;
 }
 /* nav-item nav-item-active */
+.mr-auto{
+    margin:0 auto;
+}

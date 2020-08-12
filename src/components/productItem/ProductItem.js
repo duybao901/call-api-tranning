@@ -4,6 +4,12 @@ import classnames from 'class-name'
 class ProductItem extends Component {
     render() {
         const { product, index } = this.props;
+        if (product.status === "true") {
+            product.status = true;
+        }
+        if (product.status === "false") {
+            product.status = true;
+        }
         var badgeClassName = classnames({
             "badge badge-primary": product.status === true,
             "badge badge-warning": product.status === false
