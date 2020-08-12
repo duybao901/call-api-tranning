@@ -17,9 +17,9 @@ const routers = [
         main: () => <PageProductList />
     },
     {
-        path: '/products/add',
+        path: '/product/add',
         exact: false,
-        main: () => <PageProductAction />
+        main: ({ history }) => <PageProductAction history={history}/>
     },
     {
         // Neu khong tim thay 

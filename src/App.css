@@ -7,7 +7,7 @@ nav.navbar{
     padding: 0 20px;
 }
 .products{
-    margin-top:80px;
+    margin-top:50px;
 }
 .panel{
     padding:20px;
@@ -96,6 +96,3 @@ table tbody tr td:nth-child(6) button i{
     text-decoration: none;
 }
 /* nav-item nav-item-active */
-.mr-auto{
-    margin:0 auto;
-}

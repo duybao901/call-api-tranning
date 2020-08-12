@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-
 import ProductItem from '../components/productItem/ProductItem'
 import ProductList from '../components/productList/ProductList'
 import callerApi from '../ultils/callerApi'
@@ -24,26 +23,43 @@ class ProductListContainer extends Component {
             })
         })
     }
-
+    onDelete = (id) => {
+        const { products } = this.state
+        var filterProducts;
+        callerApi("DELETE", `products/${id}`, null).then(res => {
+            if (res.status === 200) {
+                filterProducts = products.filter((product) => {
+                    return product.id !== id
+                })
+                this.setState({
+                    products: filterProducts
+                })
+            }
+        })
+    }
     showProducts = (products) => {
         var result = null;
-        result = products.map((product, index) => {
-            return (
-                <ProductItem
-                    key={index}
-                    index={index}
-                    product={product}
-                />
-            )
-        })
+        if (products.length > 0) {
+            result = products.map((product, index) => {
+                return (
+                    <ProductItem
+                        key={index}
+                        index={index}
+                        product={product}
+                        onDelete={this.onDelete}
+                    />
+                )
+            })
+        }
         return result;
     }
-
     render() {
         // const { products } = this.props;
         var { products } = this.state;
         return (
-            <ProductList products={products}/>
+            <ProductList products={products}>
+                {this.showProducts(products)}
+            </ProductList>
         );
     }
 }
