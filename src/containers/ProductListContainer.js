@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import ProductItem from '../components/productItem/ProductItem'
 import ProductList from '../components/productList/ProductList'
 import callerApi from '../ultils/callerApi'
+import * as Actions from '../actions/index'
 
 
 
@@ -17,12 +18,12 @@ class ProductListContainer extends Component {
     // render -> componentdidmount -> this.setState -> render 
     // Nhu the nay thi du lieu moi co
     componentDidMount() {
-        callerApi("GET", 'products', null).then(res => {
-            this.setState({
-                products: res.data
-            })
+        //! Cach nay khonh khuyen cao nen dung
+        callerApi("GET", 'products', null).then(res => {                
+            this.props.fecthAllProducts(res.data);
         })
     }
+    
     onDelete = (id) => {
         const { products } = this.state
         var filterProducts;
@@ -37,6 +38,7 @@ class ProductListContainer extends Component {
             }
         })
     }
+
     showProducts = (products) => {
         var result = null;
         if (products.length > 0) {
@@ -54,8 +56,8 @@ class ProductListContainer extends Component {
         return result;
     }
     render() {
-        // const { products } = this.props;
-        var { products } = this.state;
+        const { products } = this.props;
+        //var { products } = this.state;
         return (
             <ProductList products={products}>
                 {this.showProducts(products)}
@@ -70,4 +72,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, null)(ProductListContainer);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        fecthAllProducts: (products) => {
+            dispatch(Actions.actFecthProductsRequest(products));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer);

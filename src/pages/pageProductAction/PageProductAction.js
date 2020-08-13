@@ -110,7 +110,7 @@ class PageHomeProductAction extends Component {
                         />
                         <label className="form-check-label">Còn hàng</label>
                     </div>
-                    <Link to="/product-list" className="btn btn-primary mr-2"><i className="fas fa-long-arrow-alt-left mr-1"></i>Trở Lại</Link>
+                    <Link to="/product-list" className="btn btn-info mr-2"><i className="fas fa-long-arrow-alt-left mr-1"></i>Trở Lại</Link>
                     <button type="submit" className="btn btn-primary"><i className="far fa-save mr-1"></i>Lưu Lại</button>
                 </form>
             </div>

@@ -10,7 +10,8 @@ import { createStore } from 'redux'
 import appReducer from './reducers/appReducer'
 
 var store = createStore(
-  appReducer
+  appReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
 ReactDOM.render(

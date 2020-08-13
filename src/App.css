@@ -31,6 +31,9 @@ table thead tr th{
 table tbody tr td:not(:nth-child(3)){
     text-align: center ;
 }
+table tbody tr:hover{
+    background-color: rgba(0, 0, 0, .03);
+}
 /* STT */
 table thead tr th:nth-child(1){
     width: 5%;
