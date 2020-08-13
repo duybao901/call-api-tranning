@@ -5,6 +5,7 @@ import ProductListContainer from '../../containers/ProductListContainer'
 
 class PageProductList extends Component {
     render() {
+        //console.log("PageProductList");
         return (
             <div className="row">
                 <div className="col-xs-12 col-md-12 col-lg-12">
