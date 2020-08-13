@@ -3,6 +3,9 @@ import callerApi from '../ultils/callerApi'
 
 export const actFecthProductsRequest = () => {
     return (dispatch) => {
+        // Fecth du lieu tu api
+        // Sau do moi dispatch 
+        // Su dung middleware de fecth xong moi dicpatch
         return callerApi("GET", "products", null).then(res => {
             dispatch(actFecthProducts(res.data))
         })

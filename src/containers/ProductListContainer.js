@@ -75,7 +75,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         fecthAllProducts: (products) => {
-            dispatch(Actions.actFecthProductsRequest(products));
+            dispatch(Actions.actFecthProductsRequest());
         }
     }
 }
