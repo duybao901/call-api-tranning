@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
-import callerApi from '../../ultils/callerApi'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import * as Actions from '../../actions/index'
 
 class PageHomeProductAction extends Component {
     constructor(props) {
@@ -17,18 +19,22 @@ class PageHomeProductAction extends Component {
     componentDidMount() {
         var { match } = this.props;   
         if (match) {            
-            callerApi("GET", `products/${match.params.id}`, null).then(res => {                        
-                this.setState({
-                    id: match.params.id,
-                    txtCode: res.data.label,
-                    txtName: res.data.name,
-                    txtPrice: res.data.price,
-                    chkbStatus: res.data.status
-                })
+            var id = match.params.id;
+            this.props.onEditProduct(id);
+        }
+    }
+    UNSAFE_componentWillReceiveProps(next) {
+        const { itemEditing } = next;
+        if (next && next.itemEditing) {            
+            this.setState({
+                id: itemEditing.id,
+                txtCode: itemEditing.label,
+                txtName: itemEditing.name,
+                txtPrice:itemEditing.price,
+                chkbStatus: itemEditing.status
             })
         }
     }
-
     onChange = (event) => {
         var targets = event.target;
         var name = targets.name;
@@ -43,21 +49,18 @@ class PageHomeProductAction extends Component {
         const { id,  txtCode, txtName, txtPrice, chkbStatus } = this.state;
         var { history } = this.props;
         var data = {
+            id: id,
             label: txtCode,
             name: txtName,
             price:txtPrice,
             status: chkbStatus
         }
         if (id) {
-            callerApi("PUT", `products/${id}`, {
-                ...data
-            }).then(res => {
-                history.goBack();
-            })
+            this.props.onUpdateProduct(data)
+            history.goBack();
         } else {            
-            callerApi("POST", "products", {...data}).then(res => {
-                history.goBack();
-            })        
+            this.props.onAddProduct(data);
+            history.goBack();
         }
     }
     render() {
@@ -117,4 +120,25 @@ class PageHomeProductAction extends Component {
         );
     }
 }
-export default PageHomeProductAction;
+
+const mapStateToProps = (state) => {
+    return {
+        itemEditing: state.itemEditing
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        onAddProduct: (product) => {
+            dispatch(Actions.actAddProductRequest(product))
+        },
+        onEditProduct: (id) => {
+            dispatch(Actions.actGetProductRequest(id))   
+        },
+        onUpdateProduct: (product) => {
+            dispatch(Actions.actUpdateProductRequest(product))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageHomeProductAction);

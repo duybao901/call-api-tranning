@@ -19,7 +19,7 @@ class ProductItem extends Component {
         }
         var badgeClassName = classnames({
             "badge badge-primary": product.status === true,
-            "badge badge-warning": product.status === false
+            "badge badge-secondary": product.status === false
         })
         return (
             <tr>
@@ -31,7 +31,7 @@ class ProductItem extends Component {
                     <span className={badgeClassName}>{product.status ? 'Còn hàng':'Hết hàng'}</span>
                 </td>
                 <td>
-                    <Link to={`product/${product.id}/edit`} className="btn btn-primary" ><i className="far fa-edit"></i>Sữa</Link>
+                    <Link to={`product/${product.id}/edit`} className="btn btn-primary " ><i className="far fa-edit mr-1"></i>Sữa</Link>
                     <button className="btn btn-danger" onClick={()=> this.onDelete(product.id)}><i className="far fa-trash-alt"></i>Xóa</button>
                 </td>
             </tr>
